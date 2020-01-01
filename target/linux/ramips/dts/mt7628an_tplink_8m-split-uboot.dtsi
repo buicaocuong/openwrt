@@ -5,6 +5,10 @@
 	chosen {
 		bootargs = "console=ttyS0,115200";
 	};
+
+	aliases {
+		label-mac-device = &ethernet;
+	};
 };
 
 &spi0 {
@@ -80,5 +84,5 @@
 
 &ethernet {
 	mtd-mac-address = <&rom 0xf100>;
-	mediatek,portmap = "llllw";
+	mediatek,portmap = "wllll";
 };

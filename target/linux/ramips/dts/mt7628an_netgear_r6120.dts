@@ -14,11 +14,11 @@
 		led-failsafe = &led_power;
 		led-running = &led_power;
 		led-upgrade = &led_power;
+		label-mac-device = &ethernet;
 	};
 
 	keys {
-		compatible = "gpio-keys-polled";
-		poll-interval = <20>;
+		compatible = "gpio-keys";
 
 		reset {
 			label = "reset";
@@ -74,14 +74,12 @@
 	};
 };
 
-&pinctrl {
-	state_default: pinctrl0 {
-		gpio {
-			ralink,group = "p0led_an", "p1led_an", "p2led_an",
-				       "p3led_an", "p4led_an", "wdt",
-				       "wled_an", "uart1";
-			ralink,function = "gpio";
-		};
+&state_default {
+	gpio {
+		ralink,group = "p0led_an", "p1led_an", "p2led_an",
+			       "p3led_an", "p4led_an", "wdt",
+			       "wled_an", "uart1";
+		ralink,function = "gpio";
 	};
 };
 
@@ -133,8 +131,6 @@
 
 &wmac {
 	status = "okay";
-	mtd-mac-address = <&factory 0x4>;
-	mediatek,mtd-eeprom = <&factory 0x0>;
 };
 
 &ethernet {
